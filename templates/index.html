@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Fichier Excel</title>
+</head>
+<body>
+    <h1>Hello World !</h1>
+    
+    <button onclick="generateExcel()">Générer</button>
+    <span id="download-area"></span>
+
+    <script>
+        function generateExcel() {
+            fetch('/generate_excel')
+                .then(res => res.json())
+                .then(data => {
+                    const link = document.createElement('a');
+                    link.href = data.url;
+                    link.innerText = "Télécharger le fichier Excel";
+                    link.style.marginLeft = "10px";
+                    document.getElementById("download-area").innerHTML = "";
+                    document.getElementById("download-area").appendChild(link);
+                });
+        }
+    </script>
+</body>
+</html>
