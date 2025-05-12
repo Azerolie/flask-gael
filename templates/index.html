@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Interface Xelya</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container-fluid p-5 text-center text-white bg-primary">
+        <div class="row">
+            <div class="col-2">
+                logo xelya
+            </div>
+            <div class="col">
+                Configuration des interfaces Ximi
+            </div>
+        </div>
+    </div>
+
+    <div class="container p-4">
+        <h1 class="display-4 text-primary">Bienvenue sur l'interface Xelya</h1>
+        <h2 class="lead">test 1</h2>
+        <h2>test 3</h2>
+    </div>
+
+    <div class="container p-2">
+        <div class="row text-center p-2">
+            <div class="col-sm-4">
+                <select class="form-select form-select-sm" aria-label="selection d'import ou d'export">
+                    <option selected>import/export</option>
+                    <option value="1">import</option>
+                    <option value="2">export</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row text-center p-2">
+            <div class="col-4">
+                <select class="form-select form-select-sm" aria-label="selection du type de fichier" id="TypeTab">
+                    <option selected disabled>type de fichier</option>
+                    <option value="evp">evp</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row text-center p-2">
+            <div class="col-4">
+                <input type="text" class="form-control form-control-sm" id="NomTab" placeholder="Nom de l’onglet">
+            </div>
+        </div>
+
+        <div class="row text-center p-2">
+            <div class="col-4">
+                <button class="btn btn-primary btn-sm" onclick="generateExcel()">Générer</button>
+            </div>
+        </div>
+
+        <div class="row text-center p-2">
+            <div class="col-4" id="download-area"></div>
+        </div>
+    </div>
+
+    <script>
+        function generateExcel() {
+            const nom = document.getElementById("NomTab").value.trim();
+            const type = document.getElementById("TypeTab").value;
+
+            if (!nom || type === "type de fichier") {
+                alert("Veuillez saisir un nom d’onglet et choisir un type de fichier.");
+                return;
+            }
+
+            const tabs = [{ nom, type }];
+
+            fetch('/generate_excel', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(tabs)
+            })
+            .then(res => {
+                if (!res.ok) throw new Error("Erreur lors de la génération.");
+                return res.json();
+            })
+            .then(data => {
+                const link = document.createElement('a');
+                link.href = data.url;
+                link.innerText = "Télécharger le fichier Excel";
+                link.style.marginLeft = "10px";
+                const downloadArea = document.getElementById("download-area");
+                downloadArea.innerHTML = "";
+                downloadArea.appendChild(link);
+            })
+            .catch(err => {
+                alert("Une erreur est survenue : " + err.message);
+            });
+        }
+    </script>
+</body>
+</html>

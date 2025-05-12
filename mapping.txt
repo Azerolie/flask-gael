@@ -1,0 +1,149 @@
+Code, Matricule
+Qualification, Profession
+LastName, Nom marital
+MaidenName, Nom de jeune fille
+FirstName, Prénom
+BirthDate, Date de naissance
+Address, Adresse
+EmailAddress1, E-mail
+BirthCity, Ville de naissance
+Nationality, Nationalité
+SocialInsuranceNumber, N° sécurité sociale
+RIB, RIB
+IBAN, IBAN
+BIC, BIC
+HourlyPay, Salaire horaire brut
+ContractCode, Code contrat
+ContractStartDate, Date début contrat
+InterventionFirstDate, Date 1ère intervention
+ContractEndDate, Date fin contrat
+ContractEndReason, Motif fin contrat
+NoticeDetails, Préavis
+NotificationDate, Date de notification
+ContractType, Type contrat
+JobLevel, Niveau
+StartAmendment, Heures contrat mois
+EndAmendment, Heures contrat à l'avenant
+AmendmentDate, Date de l'avenant
+ReconstitutedHours, Heures contrat reconstituées
+PaidHours, Heures réelles travaillées
+ExemptedHours, Heures exonérées
+NotExemptedHours, Heures non exonérées
+DayWeekHours, Heures jour semaine
+DayWeekExemptedHours, dont heures exonérées
+NightWeekHours, Heures nuit semaine
+NightWeekExemptedHours, dont heures exonérées
+DaySaturdayHours, Heures jour samedi
+DaySaturdayExemptedHours, dont heures exonérées
+NightSaturdayHours, Heures nuit samedi
+NightSaturdayExemptedHours, dont heures exonérées
+DaySundayHours, Heures jour dimanche
+DaySundayExemptedHours, dont heures exonérées
+NightSundayHours, Heures nuit dimanche
+NightSundayExemptedHours, dont heures exonérées
+DayHolydayHours, Heures jour férié ordinaire
+DayHolydayExemptedHours, dont heures exonérées
+NightHolydayHours, Heures nuit férié ordinaire
+NightHolydayExemptedHours, dont heures exonérées
+DayHolidayNotWorkedHours, Heures jour férié chômé
+DayHolidayNotWorkedExemptedHours, dont heures exonérées
+NightHolidayNotWorkedHours, Heures nuit férié chômé
+NightHolidayNotWorkedExemptedHours, dont heures exonérées
+AgentEventHours, Heures événements intervenant
+TravelHours, Heures de trajet
+TravelDimJFHours, Heures de trajet Dim et JF 
+TravelKms, Kms de trajet
+HomeTravelHours, Heures de trajet domicile
+HomeTravelKms, Kms de trajet domicile
+InactivityHours, Heures d'inactivité
+InactivityDimJFHours, Heures d'inactivité Dim et JF 
+InterventionsMileage, Kms effectués lors des interventions
+VehicleFiscalHorsepower, Chevaux fiscaux du véhicule
+MissedCGPDays, Congés payés pris
+AbsencesResume, Résumé absence
+NbFourthInterruptions, Nb 4e interruptions
+NbAbnormalTravels, Nb trajets anormaux
+NbNightPresence, Nb inters présence nocturne
+NbOnlyAdult, Nb inters seul adulte
+ComplementaryInsuranceType, Type
+ComplementaryInsuranceFormula, Formule
+ComplementaryInsuranceValidFrom, Date de début
+ComplementaryInsuranceValidUntil, Date de fin
+ComplementaryInsuranceReason, Motif
+AdvancePayment, Montant Refacturation avance sur frais
+PayBonus, Primes
+PayProfessionalFees, Frais Professionnels
+PayRegularization, Régularisations
+
+CarTravelHours-> Heures de trajet voiture
+CarTravelKms-> Kms de trajet voiture
+BikeTravelHours-> Heures de trajet vélo
+BikeTravelKms-> Kms de trajet vélo
+MotoTravelHours-> Heures de trajet deux-roues motorisé
+MotoTravelKms-> Kms de trajet deux-roues motorisé
+CarHomeTravelKms-> Kms de trajet domicile voiture
+BikeHomeTravelKms-> Kms de trajet domicile vélo
+MotoHomeTravelKms-> Kms de trajet domicile deux-roues motorisé
+
+AstreinteDayHours-> Heures Astreinte semaine (Heures)
+AstreinteNightHours-> Heures Astreinte semaine Nuit (Heures)
+AstreintePoints-> Astreinte semaine (Points)
+AstreinteSundayHours-> Heures Astreinte dimanche et fériés (Heures)
+AstreinteSundayNightHours-> Heures Astreinte dimanche et fériés Nuit (Heures)
+AstreinteSundayPoints-> Astreinte dimanche et fériés (Points)
+NbAstreintes-> Nombre d'astreintes (Nombre d'évènements de type astreinte cumulé)
+
+Dictionary<string, string> columnsList = new Dictionary<string, string>() {
+    { "Code", "Matricule" },
+    { "Qualification", "Profession" },
+    { "LastName", "Nom marital" },
+    { "MaidenName", "Nom de jeune fille" },
+    { "FirstName", Agent.Fields.FirstName.Name },
+    { "BirthDate", "Date de naissance" },
+    { "Address", "Adresse" },
+    { "EmailAddress1", "E-mail" },
+    { "BirthCity", Agent.Fields.BirthCity.Name },
+    { "Nationality", Agent.Fields.Nationality.Name },
+    { "SocialInsuranceNumber", Agent.Fields.SocialInsuranceNumber.Name },
+    { "RIB", BankDetails.Fields.RIB.Name },
+    { "IBAN", BankDetails.Fields.IBAN.Name },
+    { "BIC", BankDetails.Fields.BIC.Name },
+    { "HourlyPay", "Salaire horaire brut" },
+    { "ContractCode", "Code contrat" },
+    { "ContractStartDate", "Date début contrat" },
+    { "InterventionFirstDate", "Date 1ère intervention" },
+    { "ContractEndDate", "Date fin contrat" },
+    { "ContractEndReason", "Motif fin contrat" },
+    { "NoticeDetails", "Préavis" },
+    { "NotificationDate", "Date de notification" },
+    { "ContractType", "Type contrat" },
+    { "JobLevel", "Niveau" },
+    { "StartAmendment", "Heures contrat mois" },
+    { "EndAmendment", "Heures contrat à l'avenant" },
+    { "AmendmentDate", "Date de l'avenant" },
+    { "ReconstitutedHours", "Heures contrat reconstituées" },
+    { "PaidHours", "Heures réelles travaillées" },
+    { "ExemptedHours", "Heures exonérées" },
+    { "NotExemptedHours", "Heures non exonérées" },
+    { "DayWeekHours", "Heures jour semaine" },
+    { "DayWeekExemptedHours", "dont heures exonérées" },
+    { "NightWeekHours", "Heures nuit semaine" },
+    { "NightWeekExemptedHours", "dont heures exonérées" },
+    { "DaySaturdayHours", "Heures jour samedi" },
+    { "DaySaturdayExemptedHours", "dont heures exonérées" },
+    { "NightSaturdayHours", "Heures nuit samedi" },
+    { "NightSaturdayExemptedHours", "dont heures exonérées" },
+    { "DaySundayHours", "Heures jour dimanche" },
+    { "DaySundayExemptedHours", "dont heures exonérées" },
+    { "NightSundayHours", "Heures nuit dimanche" },
+    { "NightSundayExemptedHours", "dont heures exonérées" },
+    { "DayHolidayHours", "Heures jour férié ordinaire" },
+    { "DayHolidayExemptedHours", "dont heures exonérées" },
+    { "NightHolidayHours", "Heures nuit férié ordinaire" },
+    { "NightHolidayExemptedHours", "dont heures exonérées" },
+    { "DayHolidayNotWorkedHours", "Heures jour férié chômé" },
+    { "DayHolidayNotWorkedExemptedHours", "dont heures exonérées" },
+    { "NightHolidayNotWorkedHours", "Heures nuit férié chômé" },
+    { "NightHolidayNotWorkedExemptedHours", "dont heures exonérées" },
+    { "AgentEventHours", "Heures événements intervenant" },
+};
