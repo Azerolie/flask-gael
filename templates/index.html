@@ -27,18 +27,10 @@
     <div class="container p-2">
         <div class="row text-center p-2">
             <div class="col-sm-4">
-                <select class="form-select form-select-sm" aria-label="selection d'import ou d'export">
+                <select class="form-select form-select-sm" aria-label="selection d'import ou d'export" id="TypeTab">
                     <option selected>import/export</option>
-                    <option value="1">import</option>
-                    <option value="2">export</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="row text-center p-2">
-            <div class="col-4">
-                <select class="form-select form-select-sm" aria-label="selection du type de fichier" id="TypeTab">
-                    <option selected disabled>type de fichier</option>
+                    <option value="import">import</option>
+                    <option value="export">export</option>
                     <option value="evp">evp</option>
                 </select>
             </div>
@@ -60,6 +52,20 @@
             <div class="col-4" id="download-area"></div>
         </div>
     </div>
+
+    <div class="row text-center p-2">
+        <div class="col-4">
+            <label for="excelFile" class="form-label">Charger votre fichier Excel modifié :</label>
+            <input class="form-control form-control-sm" type="file" id="excelFile" accept=".xlsx">
+        </div>
+    </div>
+        <div class="row text-center p-2">
+        <div class="col-4">
+            <button class="btn btn-success btn-sm" onclick="uploadFile()">Envoyer pour post-traitement</button>
+        </div>
+    </div>
+
+
 
     <script>
         function generateExcel() {
@@ -95,6 +101,44 @@
                 alert("Une erreur est survenue : " + err.message);
             });
         }
+
+
+        function uploadFile() {
+            const fileInput = document.getElementById('excelFile');
+            const file = fileInput.files[0];
+            if (!file) {
+                alert("Veuillez sélectionner un fichier.");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("file", file);
+
+            fetch("/upload_excel", {
+                method: "POST",
+                body: formData
+            })
+            .then(res => {
+                if (!res.ok) throw new Error("Erreur lors de l'envoi du fichier.");
+                return res.blob();
+            })
+            .then(blob => {
+                const link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                link.download = "mon_fichier_nettoye.xlsx";
+                link.innerText = "Télécharger le fichier nettoyé";
+                const downloadArea = document.getElementById("download-area");
+                downloadArea.innerHTML = "";
+                downloadArea.appendChild(link);
+            })
+            .catch(async err => {
+                const text = await err.response?.text?.() || err.message;
+                alert("Erreur détaillée : " + text);
+            });
+        }
     </script>
+
+    
+</div>
 </body>
 </html>
