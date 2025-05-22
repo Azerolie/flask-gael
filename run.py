@@ -58,4 +58,4 @@ def upload_excel():
     return send_file(temp_output_path, as_attachment=True)
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True)
